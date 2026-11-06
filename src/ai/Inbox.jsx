@@ -8,9 +8,9 @@ export default function Inbox({ plans }) {
   const [query, setQuery] = useState("");
 
   const decide = (id, verdict) => {
-    decisions[id] = verdict;
-    setDecisions(decisions);
-    writeStoredDecisions(decisions);
+    const next = { ...decisions, [id]: verdict };
+    setDecisions(next);
+    writeStoredDecisions(next);
   };
 
   const clearSearch = () => setQuery("");
@@ -47,7 +47,7 @@ export default function Inbox({ plans }) {
         ) : query.trim() !== "" ? (
           <div className="empty">
             <p>No hay planes que coincidan</p>
-            <button type="button" onClick={clearSearch()}>
+            <button type="button" onClick={clearSearch}>
               Limpiar búsqueda
             </button>
           </div>
